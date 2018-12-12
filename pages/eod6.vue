@@ -4,11 +4,13 @@
       <div v-if="brand==='Spinraza'" class="align_left">
         <h1>SPINRAZA®
           <span>(nusinersen)</span> <br/> HCP Virtual Group Program</h1>
-
       </div>
       <div v-if="brand==='Spinraza'" class="align_right">
         <img  src="~/assets/spinraza_logo.jpg" width="300"></div>
-      </div>
+    </div>
+      <div v-if="brand==='Biogen'" class="align_right">
+        <img  src="~/assets/Biogen_Logo_Standard-rgb_R.png" width="300"></div>
+    </div>
     <div class="content">
       <div>
         <div class="align_left">
@@ -63,10 +65,6 @@ export default {
       program_title:'',
       biogen_logo : "http://intemp.io/wp-content/uploads/2018/01/Biogen_Logo_Standard-rgb_R.png",
       spinraza_logo : "http://intemp.io/wp-content/uploads/2018/01/SpinrazaLogo_US_RGB.jpg",
-      spinraza_bottext :''
-
-
-
       //I found 7 texts below are the same whether the link is eod or webcast, so I put them as global variables
       //Please changed them into the current location of the logos, is ~/assets maybe?
       /*
@@ -78,7 +76,7 @@ export default {
       dse_logo : "http://intemp.io/wp-content/uploads/2018/01/Biogen_Logo_Standard-rgb_R.png",
       biogen_bottext : "FCH-US-3338 08/18",
       */
-
+      spinraza_bottext :''
 
     };
   },
@@ -117,8 +115,10 @@ export default {
     try {
       //1. check, which link we are now
       var cur_pageUrl = window.location.pathname;
+      //cur_pageUrl = /eod6
       cur_pageUrl = cur_pageUrl.substring(1, cur_pageUrl.length)
-      console.log(cur_pageUrl) // /eod1
+      //cur_pageUrl = eod6
+      console.log(cur_pageUrl)
 
       //2. is it eod or webcast?
       if(cur_pageUrl.indexOf('eod',0)>-1){
@@ -144,7 +144,12 @@ export default {
         let i;
         for(i=0; i<data.length; i++ ){
           let d = data[i]
+          //cur_pageUrl= eod6
+          //cur_pageUrl.substring(0, cur_pageUrl.length)
+          console.log('check eod', cur_pageUrl.substring(0, cur_pageUrl.length))
+          console.log(d['LandingPage'])
           if(d['LandingPage'].toLowerCase()==cur_pageUrl.substring(0, cur_pageUrl.length)){
+
             //the event for this link is live, so take the detail data
             //2a. get brand
             let brand = d['Brand']
@@ -154,6 +159,7 @@ export default {
             this.brand =  d['Brand']
             //2b. get program Title
             this.program_title = d['Program Title']
+
             //2c. set bottom content
             if(brand=="Biogen"){
                 //set these details
