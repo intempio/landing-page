@@ -155,7 +155,8 @@ export default {
       program_title: "",
       bottext: "",
       important: "",
-      prescribing: ""
+      prescribing: "",
+      ulink: ""
     };
   },
   mounted() {
@@ -170,43 +171,10 @@ export default {
     this.onLoadData();
   },
   methods: {
-    async handleSubmit() {
-      try {
-        let data = {
-          event_type: "webcast",
-          first_name: this.first_name,
-          last_name: this.last_name,
-          email: this.email,
-          program_id: this.program_id
-        };
-        let response = await axios.post(
-          "https://intempio-api-v3.herokuapp.com/api/v3/email-verification/",
-          data
-        );
-        let temp = response.data;
-        if (this.first_name === "" || this.last_name === "") {
-          this.notification = "Please enter name";
-        } else if (this.email === "") {
-          this.notification = "Please enter email address";
-        } else if (this.program_id === "") {
-          this.notification = "Please enter program id";
-        } else if (temp.startsWith("http")) {
-          window.location.href = temp;
-          this.notification = "Logging in to the Event...";
-        } else {
-          this.notification = temp;
-        }
-        //this.notification = response.data;
-        // console.log(response.data);
-        //console.log(response);
-      } catch (e) {
-        console.log("Error in function handleSubmit" + e);
-      }
-    },
     async onLoadData() {
       try {
         var cur_pageUrl = window.location.pathname;
-        cur_pageUrl = cur_pageUrl.substring(1, 9);
+        cur_pageUrl = cur_pageUrl.substring(1, 5);
         //  console.log(cur_pageUrl);
         if (cur_pageUrl.indexOf("webcast", 0) > -1) {
           //console.log('this is eod');
@@ -271,6 +239,8 @@ export default {
               break;
             }
             console.log(d);
+            this.ulink = d["ACLink"];
+            console.log(this.ulink);
           }
         } else {
           console.log(
@@ -280,10 +250,55 @@ export default {
       } catch (e) {
         console.log("Error in function handleSubmit" + e);
       }
+    },
+    async handleSubmit() {
+      try {
+        let data = {
+          event_type: "webcast",
+          first_name: this.first_name,
+          last_name: this.last_name,
+          email: this.email,
+          program_id: this.program_id
+        };
+        let response = await axios.post(
+          "https://intempio-api-v3.herokuapp.com/api/v3/email-verification/",
+          data
+        );
+        let temp = response.data;
+        if (this.first_name === "" || this.last_name === "") {
+          this.notification = "Please enter name";
+        } else if (this.email === "") {
+          this.notification = "Please enter email address";
+        } else if (this.program_id === "") {
+          this.notification = "Please enter program id";
+        } else if (this.email.indexOf("@biogen.com") !== -1) {
+          var pathArray = window.location.pathname.split("/");
+          var cur_pageUrl = pathArray[2];
+          window.location.href =
+            "https://intempio.adobeconnect.com/biogen_" +
+            cur_pageUrl +
+            "/" +
+            "?guestName=" +
+            this.first_name +
+            this.last_name +
+            "&proto=true";
+
+          console.log(this.ulink);
+          console.log(cur_pageUrl);
+          this.notification = "Logging in to the Event...";
+        } else if (temp.startsWith("http")) {
+          window.location.href = temp;
+          this.notification = "Logging in to the Event...";
+        } else {
+          this.notification = temp;
+        }
+
+        //this.notification = response.data;
+        //console.log(response);
+      } catch (e) {
+        console.log("Error in function handleSubmit" + e);
+      }
     }
   }
 };
 </script>
-
-<style>
-</style>
