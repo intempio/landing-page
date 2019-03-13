@@ -13,8 +13,8 @@
 }
 section.container {
   padding-top: 60px;
-  height: 100vh;
   position: relative;
+  height: 100vh;
 }
 .footer {
   background: #bfe2fe;
@@ -22,10 +22,11 @@ section.container {
   position: absolute;
   width: 100%;
   bottom: 0;
+  left: 0;
 }
 .footer .align_right {
   text-align: right;
-  font-weight: bold;
+  font-weight: 600;
 }
 .bottom_cont li {
   list-style-type: none;
@@ -92,4 +93,163 @@ p.notif {
   color: red;
   font-weight: bold;
   font-size: 14px;
+}
+div#contactinfo {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  font-size: 13px;
+  font-weight: 500;
+  width: 128px;
+  text-align: center;
+}
+#si-wrapper .silc-btn {
+  bottom: 85px !important;
+  right: 50px !important;
+}
+.chattitle {
+  position: fixed;
+  right: 10px;
+  bottom: 18%;
+  width: 145px;
+  text-align: center;
+  color: rgb(0, 174, 239);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 15px;
+}
+#contactinfo a {
+  color: rgb(0, 174, 239);
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: 100%;
+  }
+  input.input.half {
+    width: 49%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .align_left,
+  .align_right {
+    width: 49.5%;
+  }
+  h1 {
+    font-size: 30px;
+  }
+  .container {
+    max-width: 95%;
+  }
+  .header .align_right img {
+    float: right;
+    margin-right: 0;
+  }
+  .container {
+    max-width: 100%;
+  }
+  .content .align_left,
+  .content .align_right {
+    padding: 0 10px;
+    text-align: justify;
+  }
+  input.input.half {
+    width: 100%;
+  }
+  .bottom_cont li {
+    width: 24%;
+    vertical-align: top;
+  }
+  .footer {
+    position: relative;
+  }
+  div#contactinfo {
+    right: auto;
+    background: #fff;
+    width: 100%;
+    padding: 10px 10px 20px;
+    bottom: 0;
+    text-align: left;
+  }
+  #si-wrapper .silc-btn {
+    bottom: 10px !important;
+    right: 10px !important;
+  }
+  .chattitle {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .content .align_left,
+  .content .align_right {
+    padding: 0;
+    width: 100%;
+    display: block;
+    vertical-align: top;
+    text-align: justify;
+  }
+  .align_left,
+  .align_right {
+    width: 100%;
+    display: block;
+  }
+  h1 {
+    text-align: center;
+    font-size: 27px;
+  }
+  .footer {
+    bottom: 0;
+    position: relative;
+    margin-top: 30px;
+  }
+  input.input.half {
+    width: 100%;
+  }
+  section.container {
+    padding-top: 20px;
+    height: auto;
+    position: relative;
+    margin-bottom: 80px;
+  }
+  .header .align_right img {
+    float: none;
+    margin: 25px auto;
+    width: 300px;
+    display: block;
+  }
+  .content .align_left {
+    margin-bottom: 50px;
+    padding: 0 10px;
+  }
+  .footer .align_right {
+    text-align: center;
+    font-weight: 600;
+    margin-top: 15px;
+  }
+  .footer .align_left {
+    text-align: center;
+  }
+  .bottom_cont li {
+    background: #f1f1f1;
+    margin: 5px 0;
+    padding: 10px 0;
+    width: 49%;
+    margin: 10px 0;
+    vertical-align: top;
+  }
+}
+@media screen and (max-width: 500px) {
+  .bottom_cont li {
+    background: #f1f1f1;
+    margin: 5px 0;
+    padding: 10px 0;
+    width: 100%;
+    margin: 2px 0;
+    vertical-align: top;
+  }
+  div#contactinfo {
+    padding: 10px 50px 20px 10px;
+  }
 }
