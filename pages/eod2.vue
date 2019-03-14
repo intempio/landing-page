@@ -176,10 +176,10 @@ export default {
         cur_pageUrl = cur_pageUrl.substring(1, 5);
 
         let response = await axios.get(
-          "https://intempio-api-v3.herokuapp.com/api/v3/live-events/eod"
+          "https://intempio-api-v3.herokuapp.com/api/v3/live-events/eod?id=eod2"
         );
-        console.log('onLoadData function' + data);
         let data = response.data;
+        console.log("onLoadData function" + data);
         console.log(data);
         if (data.length > 0) {
           let i;
@@ -253,7 +253,7 @@ export default {
           data
         );
         let temp = response.data;
-        console.log( 'handleSubmit function' + temp);
+        console.log("handleSubmit function" + temp);
         if (this.first_name === "" || this.last_name === "") {
           this.notification = "Please enter name";
         } else if (this.email === "") {

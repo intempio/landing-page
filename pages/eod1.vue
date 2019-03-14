@@ -175,7 +175,7 @@ export default {
         var cur_pageUrl = window.location.pathname;
         cur_pageUrl = cur_pageUrl.substring(1, 5);
         let response = await axios.get(
-          "https://intempio-api-v3.herokuapp.com/api/v3/live-events/eod"
+          "https://intempio-api-v3.herokuapp.com/api/v3/live-events/eod?id=eod1"
         );
         let data = response.data;
         console.log('onLoadData function' + data);
