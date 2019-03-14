@@ -139,7 +139,6 @@
       <a href="tel:+14843716202">(484) 371-6202 x2</a> for technical support</div>
   </section>
 </template>
-<!--<script src="//www.socialintents.com/api/socialintents.1.3.js#2c9fa56367aa74090167aca4989e006b" async="async"></script>-->
 <script>
 import axios from "axios";
 
@@ -175,34 +174,22 @@ export default {
       try {
         var cur_pageUrl = window.location.pathname;
         cur_pageUrl = cur_pageUrl.substring(1, 5);
-        //  console.log(cur_pageUrl);
-        if (cur_pageUrl.indexOf("eod", 0) > -1) {
-          //console.log('this is eod');
-        } else {
-          //console.log('webcast');
-        }
         let response = await axios.get(
           "https://intempio-api-v3.herokuapp.com/api/v3/live-events/eod"
         );
-        // console.log(response);
         let data = response.data;
         console.log(data);
         if (data.length > 0) {
           let i;
           for (i = 0; i < data.length; i++) {
             let d = data[i];
-            /* console.log(
-              'check eod',
-              cur_pageUrl.substring(0, cur_pageUrl.length)
-            );*/
-            // console.log(d['LandingPage']);
+
             if (
               d["Landing Page"].toLowerCase() ==
               cur_pageUrl.substring(0, cur_pageUrl.length)
             ) {
               let brand = d["Brand"];
               let new_url = "/" + brand + "/" + cur_pageUrl;
-              // console.log('new url for history', new_url);
               window.history.replaceState({}, document.title, new_url);
               this.brand = d["Brand"];
               this.program_title = d["Title"];
@@ -265,6 +252,7 @@ export default {
           data
         );
         let temp = response.data;
+        console.log(temp);
         if (this.first_name === "" || this.last_name === "") {
           this.notification = "Please enter name";
         } else if (this.email === "") {
@@ -277,9 +265,6 @@ export default {
         } else {
           this.notification = temp;
         }
-
-        //this.notification = response.data;
-        //console.log(response);
       } catch (e) {
         console.log("Error in function handleSubmit" + e);
       }

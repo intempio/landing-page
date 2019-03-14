@@ -175,34 +175,23 @@ export default {
       try {
         var cur_pageUrl = window.location.pathname;
         cur_pageUrl = cur_pageUrl.substring(1, 5);
-        //  console.log(cur_pageUrl);
-        if (cur_pageUrl.indexOf("webcast", 0) > -1) {
-          //console.log('this is eod');
-        } else {
-          //console.log('webcast');
-        }
+
         let response = await axios.get(
           "https://intempio-api-v3.herokuapp.com/api/v3/live-events/webcast"
         );
-        // console.log(response);
         let data = response.data;
         console.log(data);
         if (data.length > 0) {
           let i;
           for (i = 0; i < data.length; i++) {
             let d = data[i];
-            /* console.log(
-              'check eod',
-              cur_pageUrl.substring(0, cur_pageUrl.length)
-            );*/
-            // console.log(d['LandingPage']);
+
             if (
               d["Landing Page"].toLowerCase() ==
               cur_pageUrl.substring(0, cur_pageUrl.length)
             ) {
               let brand = d["Brand"];
               let new_url = "/" + brand + "/" + cur_pageUrl;
-              // console.log('new url for history', new_url);
               window.history.replaceState({}, document.title, new_url);
               this.brand = d["Brand"];
               this.program_title = d["Title"];
@@ -277,9 +266,6 @@ export default {
         } else {
           this.notification = temp;
         }
-
-        //this.notification = response.data;
-        //console.log(response);
       } catch (e) {
         console.log("Error in function handleSubmit" + e);
       }
