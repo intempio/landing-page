@@ -63,6 +63,7 @@
             <b-btn
               @click="handleSubmit"
               class="button is-dark is-fullwidth"
+              :disabled="disabled == 0"
             >Join</b-btn>
           </form>
         </div>
@@ -156,7 +157,8 @@ export default {
       important: "",
       prescribing: "",
       ulink: "",
-      progid: ""
+      progid: "",
+      disabled: 0
     };
   },
   mounted() {
@@ -182,6 +184,7 @@ export default {
         console.log("onLoadData function" + data);
         console.log(data);
         if (data.length > 0) {
+          this.disabled = "1";
           let i;
           for (i = 0; i < data.length; i++) {
             let d = data[i];
