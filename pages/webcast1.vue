@@ -155,7 +155,8 @@ export default {
       bottext: "",
       important: "",
       prescribing: "",
-      ulink: ""
+      ulink: "",
+      progid: ""
     };
   },
   mounted() {
@@ -174,17 +175,16 @@ export default {
       try {
         var cur_pageUrl = window.location.pathname;
         cur_pageUrl = cur_pageUrl.substring(1, 5);
-
         let response = await axios.get(
           "https://intempio-api-v3.herokuapp.com/api/v3/live-events/webcast?id=webcast1"
         );
         let data = response.data;
         console.log("onLoadData function" + data);
+        console.log(data);
         if (data.length > 0) {
           let i;
           for (i = 0; i < data.length; i++) {
             let d = data[i];
-
             if (
               d["Landing Page"].toLowerCase() ==
               cur_pageUrl.substring(0, cur_pageUrl.length)
@@ -194,6 +194,8 @@ export default {
               window.history.replaceState({}, document.title, new_url);
               this.brand = d["Brand"];
               this.program_title = d["Title"];
+              this.progid = d["Program ID"];
+              this.ulink = d["ACLink"];
 
               if (brand == "Biogen") {
                 this.bottext = "FCH-US-3338 08/18";
@@ -227,8 +229,6 @@ export default {
               break;
             }
             console.log(d);
-            this.ulink = d["ACLink"];
-            console.log(this.ulink);
           }
         } else {
           console.log(
@@ -260,6 +260,10 @@ export default {
           this.notification = "Please enter email address";
         } else if (this.program_id === "") {
           this.notification = "Please enter program id";
+        } else if (this.program_id !== this.progid) {
+          console.log(this.progid);
+          this.notification =
+            "Incorrect Program ID, please check your email notification and try again.";
         } else if (temp.startsWith("http")) {
           window.location.href = temp;
           this.notification = "Logging in to the Event...";

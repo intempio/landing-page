@@ -139,7 +139,6 @@
       <a href="tel:+14843716202">(484) 371-6202 x2</a> for technical support</div>
   </section>
 </template>
-<!--<script src="//www.socialintents.com/api/socialintents.1.3.js#2c9fa56367aa74090167aca4989e006b" async="async"></script>-->
 <script>
 import axios from "axios";
 
@@ -156,7 +155,8 @@ export default {
       bottext: "",
       important: "",
       prescribing: "",
-      ulink: ""
+      ulink: "",
+      progid: ""
     };
   },
   mounted() {
@@ -175,18 +175,16 @@ export default {
       try {
         var cur_pageUrl = window.location.pathname;
         cur_pageUrl = cur_pageUrl.substring(1, 5);
-
         let response = await axios.get(
           "https://intempio-api-v3.herokuapp.com/api/v3/live-events/webcast?id=webcast2"
         );
         let data = response.data;
         console.log("onLoadData function" + data);
-        console.log(response);
+        console.log(data);
         if (data.length > 0) {
           let i;
           for (i = 0; i < data.length; i++) {
             let d = data[i];
-
             if (
               d["Landing Page"].toLowerCase() ==
               cur_pageUrl.substring(0, cur_pageUrl.length)
@@ -196,6 +194,8 @@ export default {
               window.history.replaceState({}, document.title, new_url);
               this.brand = d["Brand"];
               this.program_title = d["Title"];
+              this.progid = d["Program ID"];
+              this.ulink = d["ACLink"];
 
               if (brand == "Biogen") {
                 this.bottext = "FCH-US-3338 08/18";
@@ -229,8 +229,6 @@ export default {
               break;
             }
             console.log(d);
-            this.ulink = d["ACLink"];
-            console.log(this.ulink);
           }
         } else {
           console.log(
@@ -262,6 +260,10 @@ export default {
           this.notification = "Please enter email address";
         } else if (this.program_id === "") {
           this.notification = "Please enter program id";
+        } else if (this.program_id !== this.progid) {
+          console.log(this.progid);
+          this.notification =
+            "Incorrect Program ID, please check your email notification and try again.";
         } else if (temp.startsWith("http")) {
           window.location.href = temp;
           this.notification = "Logging in to the Event...";
