@@ -184,7 +184,7 @@ export default {
     async onLoadData() {
       try {
         var cur_pageUrl = window.location.pathname;
-        cur_pageUrl = cur_pageUrl.substring(1, 5);
+        cur_pageUrl = cur_pageUrl.substring(1, 9);
         let response = await axios.get(
           "https://intempio-api-v3.herokuapp.com/api/v3/live-events/webcast?id=webcast2"
         );
