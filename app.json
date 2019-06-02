@@ -1,7 +1,7 @@
 {
     "name": "Landing Page",
     "scripts": {
-      "postdeploy": "npm install"
+      "postdeploy": "npm run build && npm start"
     },
     "env": {},
     "formation": {},
