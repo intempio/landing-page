@@ -185,6 +185,7 @@ export default {
       try {
         var cur_pageUrl = window.location.pathname;
         cur_pageUrl = cur_pageUrl.substring(1, 5);
+        let url = "";
         let response = await axios.get(
           "https://intempio-api-v3.herokuapp.com/api/v3/live-events/eod?id=eod6"
         );
@@ -196,10 +197,10 @@ export default {
           let i;
           for (i = 0; i < data.length; i++) {
             let d = data[i];
-            if (
-              d["Landing Page"].toLowerCase() ==
-              cur_pageUrl.substring(0, cur_pageUrl.length)
-            ) {
+if (
+             d["Landing Page"].toLowerCase() ==
+             cur_pageUrl.substring(0, cur_pageUrl.length).toLowerCase()
+           ) {
               let brand = d["Brand"];
               let new_url = "/" + brand + "/" + cur_pageUrl;
               window.history.replaceState({}, document.title, new_url);
