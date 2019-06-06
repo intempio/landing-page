@@ -36,8 +36,8 @@
           <div v-else-if="brand==='DSE'"> To join the session please fill out the information on the right and click ‘Join’. The email address and program ID must match the ones you received in your registration email. <br /><br /> When prompted please enter a direct dial phone number (does not work with extensions) and the system will call you for meeting audio. Note: Please see Biogen’s privacy policy below for more information. <br /><br /> If you need technical help please click on the Chat below for assistance.</div>
           <div v-else-if="brand==='Biogen'"> To join the session please fill out the information on the right and click ‘Join’. The email address and program ID must match the ones you received in your registration email. <br /><br /> When prompted please enter a direct dial phone number (does not work with extensions) and the system will call you for meeting audio. Note: Please see Biogen’s privacy policy below for more information. <br /><br /> If you need technical help please click on the Chat below for assistance.</div>
           <div v-else> There is no event for this page as of the moment. </div>
-          </div>
-          <div class="align_right">
+        </div>
+        <div class="align_right">
           <p class="notif">{{notification}}</p>
           <form @submit.stop.prevent="handleSubmit">
             <input
@@ -198,7 +198,7 @@ export default {
             let d = data[i];
             if (
               d["Landing Page"].toLowerCase() ==
-              cur_pageUrl.substring(0, cur_pageUrl.length)
+              cur_pageUrl.substring(0, cur_pageUrl.length).toLowerCase()
             ) {
               let brand = d["Brand"];
               let new_url = "/" + brand + "/" + cur_pageUrl;

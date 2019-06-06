@@ -198,7 +198,7 @@ export default {
             let d = data[i];
             if (
               d["Landing Page"].toLowerCase() ==
-              cur_pageUrl.substring(0, cur_pageUrl.length)
+              cur_pageUrl.substring(0, cur_pageUrl.length).toLowerCase()
             ) {
               let brand = d["Brand"];
               let new_url = "/" + brand + "/" + cur_pageUrl;
