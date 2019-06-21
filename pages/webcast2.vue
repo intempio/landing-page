@@ -188,7 +188,7 @@ export default {
         console.log('cur_pageUrl', cur_pageUrl);
         console.log('onload process.env.VUE_APP_API', process.env.VUE_APP_API);
         let url =
-          process.env.VUE_APP_API + "/api/v3/live-events/eod?id=webcast2";
+          process.env.VUE_APP_API + "/api/v3/live-events/webcast?id=webcast2";
         let response = await axios.get(url);
         let data = response.data;
         console.log("onLoadData function" + data);
