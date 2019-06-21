@@ -185,7 +185,7 @@ export default {
       try {
         var cur_pageUrl = window.location.pathname;
         cur_pageUrl = cur_pageUrl.substring(1, 9);
-        let url = process.env.VUE_APP_API + "/api/v3/live-events/eod?id=webcast1";
+        let url = process.env.VUE_APP_API + "/api/v3/live-events/webcast?id=webcast1";
         console.log('cur_pageUrl', cur_pageUrl);
         console.log('onload process.env.VUE_APP_API', process.env.VUE_APP_API);
         let response = await axios.get(url);
