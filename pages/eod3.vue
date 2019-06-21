@@ -259,10 +259,8 @@ export default {
           email: this.email,
           program_id: this.program_id
         };
-        let response = await axios.post(
-          "https://intempio-api-v3.herokuapp.com/api/v3/email-verification/",
-          data
-        );
+        let url = process.env.VUE_APP_API + "/api/v3/email-verification/";
+        let response = await axios.post(url, data);
         let temp = response.data;
         console.log("handleSubmit function" + temp);
         if (this.first_name === "" || this.last_name === "") {

@@ -64,7 +64,6 @@ module.exports = {
     extend(config, ctx) {},
   },
   env: {
-    VUE_APP_API:
-      process.env.VUE_APP_API || 'https://api-staging.cribs.intemp.io',
+    VUE_APP_API: process.env.VUE_APP_API || 'https://api-prod.cribs.intemp.io',
   },
 };
