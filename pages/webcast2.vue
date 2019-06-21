@@ -185,9 +185,9 @@ export default {
       try {
         var cur_pageUrl = window.location.pathname;
         cur_pageUrl = cur_pageUrl.substring(1, 9);
-        let response = await axios.get(
-          "https://intempio-api-v3.herokuapp.com/api/v3/live-events/webcast?id=webcast2"
-        );
+        let url =
+          process.env.VUE_APP_API + "/api/v3/live-events/eod?id=webcast2";
+        let response = await axios.get(url);
         let data = response.data;
         console.log("onLoadData function" + data);
         console.log(data);
