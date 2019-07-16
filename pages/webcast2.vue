@@ -186,7 +186,7 @@ export default {
         var cur_pageUrl = window.location.pathname;
         cur_pageUrl = cur_pageUrl.substring(1, 9);
         let url =
-          process.env.VUE_APP_API + "/api/v3/live-events/eod?id=webcast2";
+          process.env.VUE_APP_API + "/api/v3/live-events/webcast?id=webcast2";
         let response = await axios.get(url);
         let data = response.data;
         console.log("onLoadData function" + data);
@@ -200,9 +200,9 @@ export default {
               d["Landing Page"].toLowerCase() ==
               cur_pageUrl.substring(0, cur_pageUrl.length).toLowerCase()
             ) {
-              let brand = d["Brand"];
+              /*let brand = d["Brand"];
               let new_url = "/" + brand + "/" + cur_pageUrl;
-              window.history.replaceState({}, document.title, new_url);
+              window.history.replaceState({}, document.title, new_url);*/
               this.brand = d["Brand"];
               this.program_title = d["Title"];
               this.progid = d["Program ID"];

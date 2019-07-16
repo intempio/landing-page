@@ -200,9 +200,9 @@ export default {
               d["Landing Page"].toLowerCase() ==
               cur_pageUrl.substring(0, cur_pageUrl.length).toLowerCase()
             ) {
-              let brand = d["Brand"];
+              /*let brand = d["Brand"];
               let new_url = "/" + brand + "/" + cur_pageUrl;
-              window.history.replaceState({}, document.title, new_url);
+              window.history.replaceState({}, document.title, new_url);*/
               this.brand = d["Brand"];
               this.program_title = d["Title"];
               this.progid = d["Program ID"];
