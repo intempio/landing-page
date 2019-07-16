@@ -150,7 +150,6 @@
 </template>
 <script>
 import axios from "axios";
-
 export default {
   data() {
     return {
@@ -186,6 +185,12 @@ export default {
         var cur_pageUrl = window.location.pathname;
         cur_pageUrl = cur_pageUrl.substring(1, 5);
         let url = process.env.VUE_APP_API + "/api/v3/live-events/eod?id=eod3";
+        console.log("cur_pageUrl", cur_pageUrl);
+        console.log("onload process.env.VUE_APP_API", process.env.VUE_APP_API);
+        //let response = await axios.get(
+        //  "https://intempio-api-v3.herokuapp.com/api/v3/live-events/eod?id=eod3"
+        //);
+        //let data = response.data;
         let response = await axios.get(url);
         let data = response.data;
         console.log("onLoadData function" + data);
@@ -199,14 +204,13 @@ export default {
               d["Landing Page"].toLowerCase() ==
               cur_pageUrl.substring(0, cur_pageUrl.length).toLowerCase()
             ) {
-              /*let brand = d["Brand"];
+              let brand = d["Brand"];
               let new_url = "/" + brand + "/" + cur_pageUrl;
-              window.history.replaceState({}, document.title, new_url);*/
+              window.history.replaceState({}, document.title, new_url);
               this.brand = d["Brand"];
               this.program_title = d["Title"];
               this.progid = d["Program ID"];
               this.ulink = d["ACLink"];
-
               if (brand == "Biogen") {
                 this.bottext = "FCH-US-3338 08/18";
               } else if (brand == "Spinraza") {
@@ -259,6 +263,10 @@ export default {
           program_id: this.program_id
         };
         let url = process.env.VUE_APP_API + "/api/v3/email-verification/";
+        console.log(
+          "handle submit process.env.VUE_APP_API",
+          process.env.VUE_APP_API
+        );
         let response = await axios.post(url, data);
         let temp = response.data;
         console.log("handleSubmit function" + temp);
